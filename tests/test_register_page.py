@@ -1,3 +1,4 @@
+import uuid
 import pytest
 import time
 import config
@@ -10,7 +11,9 @@ def test_registration_new_user_success(browser):
     page = RegisterPage(browser, link)
     page.open()
     time.sleep(2)
-    page.registration_new_user_success(config.REGISTER_EMAIL1, config.REGISTER_PASSWORD1)
+    e = uuid.uuid4().hex
+    email = f'{e}@gmail.com'
+    page.registration_new_user_success(email, config.REGISTER_PASSWORD1)
     time.sleep(2)
     expected_url = config.VALID_LINK_PROFILE_PAGE
     time.sleep(2)
